@@ -1,0 +1,328 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-carbon: #141a18;
+  --color-verde: #344b43;
+  --color-bronce: #c1a275;
+  --color-marfil: #e7ddcb;
+  --color-arcilla: #8a5443;
+  /* derivados para texto y superficies */
+  --color-papel: #f1eadc;
+  --color-tinta: #1d2522;
+  --color-tinta-suave: #4d5a54;
+  --color-bronce-oscuro: #7d6238;
+
+  --font-serif: var(--font-titulos), Georgia, serif;
+  --font-sans: var(--font-texto), system-ui, sans-serif;
+
+  /* escala tipográfica fluida: móvil → escritorio */
+  --text-nota: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-cuerpo: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --text-entrada: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+  --text-titulo: clamp(2rem, 1.5rem + 2.4vw, 3.75rem);
+  --text-portada: clamp(2.75rem, 1.2rem + 7.4vw, 8.5rem);
+}
+
+html {
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-cuerpo);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-arcilla);
+  outline-offset: 3px;
+}
+
+.sobre-oscuro :focus-visible {
+  outline-color: var(--color-bronce);
+}
+
+/* enlace de texto: subrayado fino que se engrosa */
+.enlace {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--color-bronce);
+  transition: text-decoration-color 0.2s;
+}
+.enlace:hover {
+  text-decoration-color: currentColor;
+}
+
+/* grano de papel, generado sin imágenes */
+.grano::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .22 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* entrada única del título de portada */
+@keyframes alzar {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+.alzar {
+  animation: alzar 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .alzar {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- transición entre páginas ---- */
+@keyframes recoger {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+.telon {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: var(--color-carbon);
+  transform-origin: top;
+  transform: scaleY(0);
+  animation: recoger 0.75s cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+.entrada-pagina {
+  animation: subir 0.8s 0.25s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+/* señal de scroll de la portada */
+@keyframes gotear {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.gotear {
+  animation: gotear 2.4s ease-in-out infinite;
+}
+
+/* onda dibujada de la cronología */
+@keyframes trazar {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/* ficha ampliada de la biblioteca y menú */
+dialog::backdrop {
+  background: rgb(20 26 24 / 0.72);
+  backdrop-filter: blur(3px);
+}
+@keyframes abrir {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+dialog[open] {
+  animation: abrir 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .telon,
+  .entrada-pagina,
+  .gotear,
+  dialog[open] {
+    animation: none;
+  }
+}
+
+/* el recorrido se detiene suavemente en cada estancia */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.recorrido) {
+    scroll-snap-type: y proximity;
+  }
+}
+
+/* letras del título de portada: suben una a una desde su línea */
+@keyframes letra {
+  from {
+    transform: translateY(105%) rotate(4deg);
+    opacity: 0;
+  }
+}
+.letra {
+  animation: letra 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* revelado al entrar en pantalla (data-revelar lo activa Movimiento.tsx) */
+[data-revelar] {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 1.1s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--espera, 0s);
+}
+[data-revelar].visto {
+  opacity: 1;
+  transform: none;
+}
+
+/* puntos del atlas */
+@keyframes latido {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+.punto-atlas {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-bronce);
+  box-shadow: 0 0 14px 3px rgb(193 162 117 / 0.55);
+  cursor: pointer;
+  animation: aparecer 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+.punto-atlas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--color-bronce);
+  animation: latido 2.8s ease-out infinite;
+}
+.punto-atlas[aria-current="true"] {
+  background: var(--color-marfil);
+  box-shadow: 0 0 22px 6px rgb(231 221 203 / 0.7);
+}
+
+/* barras de la sala de escucha */
+@keyframes pulso {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letra,
+  .punto-atlas,
+  .punto-atlas::after {
+    animation: none;
+  }
+  [data-revelar] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* visita guiada: cada estancia se enfoca al llegar a ella */
+.estancia-texto {
+  transition:
+    opacity 1.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 1.2s;
+}
+.estancia-fondo {
+  transition: transform 2.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+/* solo se atenúan las demás cuando el mando de la visita está en marcha */
+.guiada .estancia:not([data-activa]) .estancia-texto {
+  opacity: 0.2;
+  transform: translateY(40px);
+  filter: blur(6px);
+}
+.guiada .estancia:not([data-activa]) .estancia-fondo {
+  transform: scale(1.12);
+}
+@keyframes avance {
+  from {
+    transform: scaleX(0);
+  }
+}
+.avance {
+  animation: avance linear both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .guiada .estancia .estancia-texto,
+  .guiada .estancia .estancia-fondo {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .avance {
+    animation: none;
+  }
+}
