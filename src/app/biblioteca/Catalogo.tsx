@@ -196,6 +196,13 @@ export default function Catalogo() {
                   Cerrar
                 </button>
               </div>
+              {abierta.portada && (
+                <img
+                  src={abierta.portada}
+                  alt={`Cubierta de «${abierta.titulo}»`}
+                  className="mt-6 h-52 w-auto shadow-[0_20px_40px_rgb(0_0_0/0.35)] md:h-64"
+                />
+              )}
               <h2 id="ficha-titulo" className="mt-6 text-[clamp(1.6rem,1.2rem+1.8vw,2.75rem)] leading-tight">
                 {abierta.titulo}
               </h2>
@@ -212,7 +219,7 @@ export default function Catalogo() {
                     ["ISBN", abierta.isbn],
                     ["DOI", abierta.doi],
                     ["Licencia", abierta.licencia],
-                    ["Disponibilidad", abierta.pdf ? "Documento disponible en el museo" : abierta.doi || abierta.enlace ? "En la web del editor" : "Sin copia digital localizada"],
+                    ["Disponibilidad", abierta.disponibilidad ?? (abierta.pdf ? "Documento disponible en el museo" : abierta.doi || abierta.enlace ? "En la web del editor" : "Sin copia digital localizada")],
                   ] as const
                 )
                   .filter(([, v]) => v)

@@ -106,4 +106,48 @@ fuentes.push({
   nota: "Testimonio directo de la familia, promotora del museo.",
 });
 
+// Documentos del archivo de la casa, digitalizados y entregados por la familia en 2026.
+fuentes.push(
+  {
+    id: "doc-aj-2006",
+    cita: "Arrivillaga Cortés, A. (2006). Aj' Instrumentos musicales mayas. Universidad Intercultural de Chiapas. Ejemplar digitalizado, archivo Casa Laruduna.",
+    tipo: "primaria",
+    consultada: "2026-10-15",
+    nota: "Página de créditos y cubierta leídas en la copia digital.",
+  },
+  {
+    id: "doc-tp36",
+    cita: "Arrivillaga Cortés, A. (1982). Introducción a la historia de los instrumentos musicales de la tradición popular guatemalteca. La Tradición Popular, 36. Ejemplar digitalizado, archivo Casa Laruduna.",
+    tipo: "primaria",
+    consultada: "2026-10-15",
+  },
+  {
+    id: "doc-tp128",
+    cita: "Reanda Chiquival Primero, D., y Arrivillaga Cortés, A. (2000). El Ju'l Juaj Tijaax. Abonando la resiembra, un reencuentro con la memoria colectiva. La Tradición Popular, 128. Ejemplar digitalizado, archivo Casa Laruduna.",
+    tipo: "primaria",
+    consultada: "2026-10-15",
+  },
+  {
+    id: "doc-maderas-2010",
+    cita: "Arrivillaga Cortés, A. (2010). La Marimba Maderas de Mi Tierra, embajadora musical de Guatemala. Segunda edición. SAAS. Ejemplar digital, archivo Casa Laruduna.",
+    tipo: "primaria",
+    consultada: "2026-10-15",
+    nota: "Página de créditos, presentación y prólogo leídos en la copia digital.",
+  },
+  {
+    id: "doc-ibimeni",
+    cita: "Libreto y etiqueta del disco Ibimeni: Garifuna Traditional Music from Guatemala. Sub Rosa, SR289. Copia digital, archivo Casa Laruduna.",
+    tipo: "primaria",
+    consultada: "2026-10-15",
+    nota: "El libreto no indica el año de edición.",
+  },
+  {
+    id: "archivo-laruduna",
+    cita: "Archivo Casa Laruduna. Fotografías de Sylvia Lucrecia Shaw Arrivillaga y grabaciones de campo, entregadas por la familia en 2026.",
+    tipo: "primaria",
+    consultada: "2026-10-15",
+    nota: "La autoría de las fotografías la indica la familia. Fechas y lugares, por confirmar.",
+  },
+);
+
 export const fuentePorId = (id: string) => fuentes.find((f) => f.id === id);

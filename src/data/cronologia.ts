@@ -170,6 +170,30 @@ export const cronologia: Hito[] = [
     estado: "revisado",
   },
   {
+    fecha: "2000",
+    orden: 2000,
+    hilo: "Obra escrita",
+    titulo: "El Ju'l Juaj Tijaax",
+    texto:
+      "Con Diego Reanda Chiquival Primero publica en La Tradición Popular la historia de un conjunto tz'utujil y de su música: un reencuentro con la memoria colectiva tras la violencia.",
+    lugar: "Lago de Atitlán, Sololá",
+    obras: ["el-jul-juaj-tijaax"],
+    fuentes: ["doc-tp128"],
+    estado: "revisado",
+  },
+  {
+    fecha: "2006",
+    orden: 2006,
+    hilo: "Obra escrita",
+    titulo: "Aj' Instrumentos musicales mayas",
+    texto:
+      "La Universidad Intercultural de Chiapas publica su estudio de los instrumentos musicales mayas: murales, vasos policromos, esculturas, figurillas y escritura jeroglífica.",
+    lugar: "San Cristóbal de las Casas, Chiapas",
+    obras: ["aj-instrumentos-musicales-mayas"],
+    fuentes: ["doc-aj-2006"],
+    estado: "revisado",
+  },
+  {
     fecha: "2007",
     orden: 2007,
     hilo: "Sonido",

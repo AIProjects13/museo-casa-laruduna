@@ -59,3 +59,22 @@ Entrevista de Gemma Gil, Prensa Libre, 22 de abril de 2007, leída en una reprod
 - Perfil de Academia.edu (acceso bloqueado a la consulta automática).
 - *Aj' instrumentos musicales mayas* (UNICH, 2006) y *Garínagu* (2011): citados, sin ficha de
   catálogo comprobada. No se han incluido en la biblioteca.
+
+## Actualización del 15 de octubre de 2026: documentos de la familia
+
+La familia entregó copias digitales de documentos, fotografías y grabaciones del archivo de la casa.
+
+Confirmado con los documentos:
+
+- *Aj' Instrumentos musicales mayas* (2006): Universidad Intercultural de Chiapas, ISBN 968-7846-81-X.
+- *La Tradición Popular*, 36 (1982): título exacto del artículo sobre instrumentos musicales de la tradición popular guatemalteca.
+- *La Tradición Popular*, 128 (2000): «El Ju'l Juaj Tijaax», con Diego Reanda Chiquival Primero.
+- *La Marimba Maderas de Mi Tierra* (2010): segunda edición, SAAS, ISBN 978-9929-8104-0-2. Su prólogo cita dos versiones anteriores (2003 y 2004), añadidas como pendientes.
+- *Ibimeni* (Sub Rosa): el libreto da el número SR289 y grabaciones de 1990; no da el año de edición.
+
+Publicado en el museo con permiso de la familia: cinco fotografías de Sylvia Lucrecia Shaw
+Arrivillaga, una grabación sonora y un vídeo de campo de Huehuetenango (2008).
+
+No publicado: los PDF de las obras, porque sus créditos reservan derechos a terceros
+(Universidad Intercultural de Chiapas, SAAS, CEFOL-USAC, Sub Rosa). Están en `privado/`,
+fuera del repositorio.

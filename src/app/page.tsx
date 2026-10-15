@@ -14,7 +14,7 @@ const palabras: { palabra: string; escena: NombreEscena; texto: string; sala: st
     palabra: "Memoria",
     escena: "memoria",
     texto:
-      "Cintas, casetes, película en blanco y negro, ektachrome y súper 8. La casa fue reuniendo en el campo un archivo que hoy espera inventario.",
+      "Cintas, casetes, película en blanco y negro, ektachrome y súper 8. La casa fue reuniendo en el campo un archivo que empieza a abrirse con las fotografías de Sylvia Shaw Arrivillaga.",
     sala: "/archivo-visual",
     ir: "Entrar al archivo visual",
   },
@@ -121,7 +121,7 @@ export default function Inicio() {
             />
             {p.escena === "sonido" && <Ondas className="opacity-80 mix-blend-screen" />}
             <div className="relative max-w-[42rem]">
-              <div data-paralaje="-0.1" className="will-change-transform">
+              <div data-paralaje="-0.1" suppressHydrationWarning className="will-change-transform">
                 <h2
                   id={`palabra-${i}`}
                   data-revelar

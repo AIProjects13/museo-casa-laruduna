@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Escena } from "@/components/Escena";
 import Ondas from "@/components/Ondas";
 import { Fuentes } from "@/components/Procedencia";
+import { audios } from "@/data/grabaciones";
 import { salaPorSlug } from "@/data/museo";
 import { publicaciones } from "@/data/publicaciones";
 
@@ -43,13 +44,57 @@ export default function Fonoteca() {
         />
         <Ondas className="mix-blend-screen" />
         <div className="relative">
-          <p className="text-bronce">Sala de escucha en preparación</p>
+          <p className="text-bronce">Sala de escucha</p>
           <h1 className="mt-4 text-(length:--text-portada) leading-[0.92]">Fonoteca</h1>
           <p className="mt-8 max-w-[50ch] text-(length:--text-entrada) leading-snug text-marfil/90">
             {sala.intro}
           </p>
         </div>
       </section>
+
+      {audios.length > 0 && (
+        <section aria-labelledby="escucha" className="border-b border-marfil/15 px-5 py-24 md:px-12 md:py-32">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <h2 id="escucha" className="text-(length:--text-titulo)">
+              Del archivo de la casa
+            </h2>
+            <p className="max-w-[46ch] text-marfil/70">
+              Grabaciones conservadas por Casa Laruduna, publicadas con el permiso de la familia.
+            </p>
+          </div>
+          <ul className="mt-12 space-y-10">
+            {audios.map((g) => (
+              <li
+                key={g.id}
+                data-revelar
+                className="grid gap-6 border-l border-bronce pl-6 lg:grid-cols-[1fr_1.1fr] lg:gap-12"
+              >
+                <div>
+                  <h3 className="text-[clamp(1.6rem,1.2rem+1.4vw,2.6rem)] leading-tight">{g.titulo}</h3>
+                  <p className="mt-2 text-(length:--text-nota) text-marfil/60">
+                    {[g.duracion, g.lugar, g.fecha, g.procedencia].filter(Boolean).join(". ")}
+                  </p>
+                  <p className="mt-4 max-w-[48ch] text-marfil/85">{g.descripcion}</p>
+                  {g.nota && <p className="mt-3 max-w-[52ch] text-(length:--text-nota) text-marfil/60">{g.nota}</p>}
+                  <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 [&_*]:!text-marfil/60">
+                    <Fuentes ids={g.fuentes} />
+                  </p>
+                </div>
+                <div className="self-center">
+                  <audio
+                    controls
+                    preload="none"
+                    src={g.archivo}
+                    className="w-full [color-scheme:dark] accent-bronce"
+                  >
+                    <a href={g.archivo}>Descargar la grabación</a>
+                  </audio>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section aria-labelledby="pistas" className="px-5 py-24 md:px-12 md:py-32">
         <div className="flex flex-wrap items-end justify-between gap-6">

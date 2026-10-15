@@ -51,7 +51,11 @@ export function Escena({
 
   return (
     <div ref={marco} aria-hidden="true" className={`absolute inset-0 overflow-hidden ${className}`}>
-      <div data-paralaje={paralaje} className="absolute -inset-y-[12%] inset-x-0 will-change-transform">
+      <div
+        data-paralaje={paralaje}
+        suppressHydrationWarning
+        className="absolute -inset-y-[12%] inset-x-0 will-change-transform"
+      >
         <picture>
           <source media="(max-width: 767px)" srcSet={`/escenas/${nombre}-m.webp`} />
           <img

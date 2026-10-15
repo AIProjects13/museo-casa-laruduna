@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Escena, type NombreEscena } from "@/components/Escena";
 import { Estado, Fuentes } from "@/components/Procedencia";
+import Galeria from "@/components/Galeria";
 import { fotografias } from "@/data/fotografias";
+import { videos } from "@/data/grabaciones";
 import { salaPorSlug, salas } from "@/data/museo";
 
 type Props = { params: Promise<{ sala: string }> };
@@ -14,7 +16,7 @@ const PROPIAS = ["biblioteca", "alfonso-arrivillaga-cortes", "fonoteca", "atlas"
 // Escena de cabecera y aviso de estado de cada sala.
 const CABECERA: Record<string, { escena: NombreEscena; aviso?: string }> = {
   "la-casa": { escena: "legado" },
-  "archivo-visual": { escena: "memoria", aviso: "Sala en preparación" },
+  "archivo-visual": { escena: "memoria" },
   exposiciones: { escena: "legado", aviso: "Sala en preparación" },
   contacto: { escena: "memoria", aviso: "Todavía sin formulario" },
 };
@@ -72,27 +74,52 @@ async function Sala({ params }: Props) {
         <div className="relative">
           {sala.slug === "archivo-visual" && fotografias.length > 0 && (
             <section aria-labelledby="galeria" className="pt-20 md:pt-28">
-              <h2 id="galeria" className="text-(length:--text-titulo)">
-                Fotografías
+              <div className="flex flex-wrap items-end justify-between gap-6">
+                <h2 id="galeria" className="max-w-[18ch] text-(length:--text-titulo)">
+                  Fotografías de Sylvia Shaw Arrivillaga
+                </h2>
+                <p className="max-w-[46ch] text-tinta-suave">
+                  Colección Casa Laruduna. Pulsa una imagen para verla a pantalla completa con su
+                  ficha.
+                </p>
+              </div>
+              <Galeria fotos={fotografias} />
+            </section>
+          )}
+
+          {sala.slug === "archivo-visual" && videos.length > 0 && (
+            <section aria-labelledby="videos" className="pt-12 md:pt-20">
+              <h2 id="videos" className="text-(length:--text-titulo)">
+                Vídeo de campo
               </h2>
-              <ul className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {fotografias.map((f) => (
-                  <li key={f.archivo}>
-                    <figure>
-                      <a href={f.archivo}>
-                        <img src={f.archivo} alt={f.descripcion} loading="lazy" className="w-full bg-marfil" />
-                      </a>
-                      <figcaption className="mt-3">
-                        <span className="block font-serif text-xl leading-tight">{f.titulo}</span>
-                        <span className="block text-(length:--text-nota) text-tinta-suave">
-                          {[f.fecha, f.lugar, f.credito].filter(Boolean).join(". ")}
-                        </span>
-                        <span className="mt-1 flex flex-wrap gap-x-4">
-                          <Estado estado={f.estado} />
-                          <Fuentes ids={f.fuentes} />
-                        </span>
-                      </figcaption>
-                    </figure>
+              <ul className="mt-8 space-y-12">
+                {videos.map((v) => (
+                  <li key={v.id} data-revelar className="grid gap-6 lg:grid-cols-[1.6fr_1fr] lg:gap-12">
+                    <video
+                      controls
+                      preload="none"
+                      poster={v.poster}
+                      src={v.archivo}
+                      className="w-full bg-carbon"
+                    >
+                      <a href={v.archivo}>Descargar el vídeo</a>
+                    </video>
+                    <div>
+                      <h3 className="text-[clamp(1.5rem,1.2rem+1vw,2.2rem)] leading-tight">{v.titulo}</h3>
+                      <p className="mt-2 text-(length:--text-nota) text-tinta-suave">
+                        {[v.lugar, v.fecha, v.duracion].filter(Boolean).join(". ")}
+                      </p>
+                      <p className="mt-4 max-w-[48ch]">{v.descripcion}</p>
+                      {v.nota && (
+                        <p className="mt-4 border-l border-arcilla pl-4 text-(length:--text-nota) text-arcilla">
+                          {v.nota}
+                        </p>
+                      )}
+                      <p className="mt-4 flex flex-col gap-1">
+                        <Estado estado={v.estado} />
+                        <Fuentes ids={v.fuentes} />
+                      </p>
+                    </div>
                   </li>
                 ))}
               </ul>

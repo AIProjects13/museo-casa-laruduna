@@ -1,4 +1,6 @@
 import type { EstadoRegistro } from "./fuentes";
+import { fotografias } from "./fotografias";
+import { audios, videos } from "./grabaciones";
 import { publicaciones } from "./publicaciones";
 
 export const SITIO = {
@@ -153,9 +155,9 @@ export const salas: Sala[] = [
     slug: "fonoteca",
     nombre: "Fonoteca",
     resumen: "El archivo sonoro: grabaciones de campo y producciones de la casa.",
-    situacion: `Sala de escucha en preparación, ${sonoras} producciones`,
+    situacion: `${audios.length} grabación del archivo y ${sonoras} producciones catalogadas`,
     intro:
-      "Casa Laruduna produjo casetes y discos con músicos de distintas tradiciones de Guatemala, muchos grabados en el lugar. La sala de escucha se abrirá cuando existan los archivos digitalizados y los permisos de los intérpretes o sus comunidades.",
+      "Casa Laruduna produjo casetes y discos con músicos de distintas tradiciones de Guatemala, muchos grabados en el lugar. La sala de escucha se abre con la primera grabación del archivo de la casa; las demás llegarán a medida que se digitalicen los originales.",
     hechos: [
       {
         texto:
@@ -226,9 +228,9 @@ export const salas: Sala[] = [
     slug: "archivo-visual",
     nombre: "Archivo visual",
     resumen: "Fotografía histórica, película y vídeo, con créditos y procedencia.",
-    situacion: "A la espera de materiales autorizados",
+    situacion: `${fotografias.length} fotografías de Sylvia Shaw Arrivillaga y ${videos.length} vídeo de campo`,
     intro:
-      "El archivo visual solo mostrará imágenes con procedencia y permiso conocidos. Las ilustraciones contemporáneas del museo se marcarán siempre como tales, separadas de la fotografía histórica.",
+      "Las primeras imágenes del archivo de la casa: fotografías de Sylvia Lucrecia Shaw Arrivillaga y una grabación de campo. Cada una lleva su crédito, su procedencia y lo que aún falta por confirmar. Las ilustraciones contemporáneas del museo no se mezclan con ellas.",
     hechos: [
       {
         texto:
@@ -244,7 +246,8 @@ export const salas: Sala[] = [
       },
     ],
     pendiente: [
-      "Inventario de la Colección Casa Laruduna.",
+      "Fechas, lugares y nombres de las personas que aparecen en las fotografías.",
+      "Inventario completo de la Colección Casa Laruduna.",
       "Permisos de fotógrafos externos, entre ellos Daniel Hernández-Salazar y Carlos Sebastián.",
     ],
   },

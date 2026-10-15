@@ -24,6 +24,8 @@ export type Publicacion = {
   // Archivos propios, solo con permiso de difusión. Rutas dentro de /public:
   audio?: string; // p. ej. "/archivo/audio/maya-hohn-1993.mp3"
   pdf?: string; // p. ej. "/archivo/documentos/fantasia-garifuna.pdf"
+  portada?: string; // cubierta real, p. ej. "/archivo/portadas/nombre.jpg"
+  disponibilidad?: string; // sustituye al texto automático de la ficha
   estado: EstadoRegistro;
   fuentes: string[]; // ids de src/data/fuentes.ts
   nota?: string;
@@ -143,12 +145,16 @@ export const publicaciones: Publicacion[] = [
     slug: "la-marimba-maderas-de-mi-tierra",
     titulo: "La Marimba Maderas de Mi Tierra, embajadora musical de Guatemala",
     autoria: [AAC],
+    colaboradores: "Segunda edición, ampliada y actualizada. Edición al cuidado de Paola Ketmaier",
     anio: 2010,
     categoria: "Libros",
-    publicadoEn: "Guatemala. Entidad editora por confirmar",
-    estado: "pendiente de verificar",
-    fuentes: ["ufm-maderas"],
-    nota: "Las citas consultadas atribuyen la edición a dos secretarías distintas de la Presidencia. Falta ver el ejemplar.",
+    publicadoEn:
+      "Secretaría de Asuntos Administrativos y de Seguridad de la Presidencia de la República (SAAS), Guatemala",
+    isbn: "978-9929-8104-0-2",
+    disponibilidad: "Copia digital en el archivo de la casa. Se publicará cuando lo autoricen los titulares de los derechos.",
+    estado: "revisado",
+    fuentes: ["doc-maderas-2010", "ufm-maderas"],
+    nota: "Amplía dos trabajos anteriores del autor sobre la misma agrupación, de 2003 y 2004.",
   },
   {
     slug: "el-puerto-de-livingston-en-guatemala",
@@ -198,6 +204,53 @@ export const publicaciones: Publicacion[] = [
     fuentes: ["arrivillaga-2022"],
   },
   {
+    slug: "aj-instrumentos-musicales-mayas",
+    titulo: "Aj' Instrumentos musicales mayas",
+    autoria: [AAC],
+    anio: 2006,
+    categoria: "Libros",
+    publicadoEn: "Universidad Intercultural de Chiapas, San Cristóbal de las Casas",
+    isbn: "968-7846-81-X",
+    portada: "/archivo/portadas/aj-instrumentos-musicales-mayas.jpg",
+    disponibilidad: "Copia digital en el archivo de la casa. Se publicará cuando lo autoricen los titulares de los derechos.",
+    estado: "revisado",
+    fuentes: ["doc-aj-2006"],
+  },
+  {
+    slug: "maderas-de-mi-tierra-70-anos",
+    titulo: "Maderas de Mi Tierra, 70 años de vida exitosa",
+    autoria: [AAC],
+    anio: 2004,
+    categoria: "Libros",
+    publicadoEn: "Guatemala. Entidad editora por confirmar",
+    estado: "pendiente de verificar",
+    fuentes: ["doc-maderas-2010"],
+    nota: "El autor la cita en el prólogo de 2010 como versión para el septuagésimo aniversario de la agrupación. Falta ver el ejemplar.",
+  },
+  {
+    slug: "maderas-de-mi-tierra-la-marimba-de-una-epoca",
+    titulo: "Maderas de Mi Tierra: la marimba de una época",
+    autoria: [AAC],
+    anio: 2003,
+    categoria: "Artículos científicos",
+    publicadoEn: "Boletín de La Tradición Popular. Centro de Estudios Folklóricos, USAC",
+    estado: "pendiente de verificar",
+    fuentes: ["doc-maderas-2010"],
+    nota: "Citado por el autor en el prólogo de 2010. Falta el número del boletín.",
+  },
+  {
+    slug: "el-jul-juaj-tijaax",
+    titulo: "El Ju'l Juaj Tijaax. Abonando la resiembra, un reencuentro con la memoria colectiva",
+    autoria: ["Diego Reanda Chiquival Primero", AAC],
+    anio: 2000,
+    categoria: "Artículos científicos",
+    publicadoEn: "La Tradición Popular, 128. Boletín del Centro de Estudios Folklóricos, USAC",
+    portada: "/archivo/portadas/la-tradicion-popular-128.jpg",
+    disponibilidad: "Copia digital en el archivo de la casa. Se publicará cuando lo autoricen los titulares de los derechos.",
+    estado: "revisado",
+    fuentes: ["doc-tp128"],
+  },
+  {
     slug: "de-colonia-a-republica",
     titulo:
       "De colonia a república: lo social y el Estado en la conformación del caribe guatemalteco",
@@ -216,12 +269,14 @@ export const publicaciones: Publicacion[] = [
     titulo:
       "Introducción a la historia de los instrumentos musicales de la tradición popular guatemalteca",
     autoria: [AAC],
+    colaboradores: "Fotografías de J. Manuel Guerra Caravantes",
     anio: 1982,
     categoria: "Artículos científicos",
-    publicadoEn: "La Tradición Popular, 36. Centro de Estudios Folklóricos, USAC",
-    estado: "pendiente de verificar",
-    fuentes: ["cefol-1982"],
-    nota: "Título retraducido desde un informe en inglés; falta cotejar la redacción original.",
+    publicadoEn: "La Tradición Popular, 36. Boletín del Centro de Estudios Folklóricos, USAC",
+    portada: "/archivo/portadas/la-tradicion-popular-36.jpg",
+    disponibilidad: "Copia digital en el archivo de la casa. Se publicará cuando lo autoricen los titulares de los derechos.",
+    estado: "revisado",
+    fuentes: ["doc-tp36", "cefol-1982"],
   },
   {
     slug: "encuentro-musicos-peten-1994",
@@ -320,13 +375,15 @@ export const publicaciones: Publicacion[] = [
     slug: "ibimeni-garifuna-traditional-music-from-guatemala",
     titulo: "Ibimeni: Garifuna Traditional Music from Guatemala",
     autoria: ["Ibimeni"],
-    colaboradores: "Grabaciones de campo de Alfonso Arrivillaga Cortés, según las distribuidoras",
+    colaboradores:
+      "Grabaciones originales de 1990 y textos de Alfonso Arrivillaga Cortés. Producción y selección de Juan Carlos Barrios; traducción de María del Pilar Alpírez; fotografías de Claudio Vásquez Bianchi",
     anio: 2008,
     categoria: "Producción sonora",
-    publicadoEn: "Sub Rosa, SR 273",
+    publicadoEn: "Sub Rosa, SR289",
+    disponibilidad: "Copia digital en el archivo de la casa. Se publicará cuando lo autoricen los titulares de los derechos.",
     estado: "pendiente de verificar",
-    fuentes: ["subrosa-273"],
-    nota: "Año de edición dudoso (2008 o 2009) y fecha de grabación (1990) sin confirmar con el libreto.",
+    fuentes: ["doc-ibimeni", "subrosa-273"],
+    nota: "El libreto confirma las grabaciones de 1990 y el número SR289; algunas distribuidoras citan SR 273. Falta el año de edición (2008 o 2009).",
   },
 ];
 

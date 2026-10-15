@@ -125,21 +125,37 @@ const estancias: Estancia[] = [
     fondo: "bg-carbon",
     contenido: (
       <>
-        <p className="text-bronce">Guatemala, 14 de enero de 1957 - 3 de mayo de 2022</p>
-        <h2 className="mt-4 max-w-[14ch] text-(length:--text-portada) leading-[0.92]">
-          Sylvia Lucrecia Shaw Arrivillaga
-        </h2>
-        <p className="mt-8 max-w-[50ch] text-(length:--text-entrada) leading-snug text-marfil/90">
-          Está en el origen de la casa. Gestora cultural y traductora, dirigió sus producciones
-          musicales y buena parte de su gestión.
-        </p>
-        <p className="mt-5 max-w-[50ch] text-marfil/80">
-          En 2022 Alfonso escribió su vida académica y profesional. Ese texto es la fuente
-          principal de este museo.
-        </p>
-        <Fuente id="arrivillaga-2022">
-          Laruduna, la casa de Sylvia Lucrecia Shaw Arrivillaga, le dice adiós.
-        </Fuente>
+        {/* el texto deja sitio a la fotografía en pantallas anchas */}
+        <div className="lg:pr-[26rem]">
+          <p className="text-bronce">Guatemala, 14 de enero de 1957 - 3 de mayo de 2022</p>
+          <h2 className="mt-4 max-w-[14ch] text-(length:--text-portada) leading-[0.92]">
+            Sylvia Lucrecia Shaw Arrivillaga
+          </h2>
+          <p className="mt-8 max-w-[50ch] text-(length:--text-entrada) leading-snug text-marfil/90">
+            Está en el origen de la casa. Gestora cultural y traductora, dirigió sus producciones
+            musicales y buena parte de su gestión.
+          </p>
+          <p className="mt-5 max-w-[50ch] text-marfil/80">
+            En 2022 Alfonso escribió su vida académica y profesional. Ese texto es la fuente
+            principal de este museo.
+          </p>
+          <Fuente id="arrivillaga-2022">
+            Laruduna, la casa de Sylvia Lucrecia Shaw Arrivillaga, le dice adiós.
+          </Fuente>
+        </div>
+        <figure className="mt-10 max-w-[20rem] lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:w-[22rem] lg:max-w-none lg:-translate-y-1/2">
+          <img
+            src="/archivo/fotografias/maya-hohn-2.jpg"
+            alt="Cuatro músicos del grupo Maya Hohn con sus instrumentos en un camino de tierra."
+            className="w-full"
+          />
+          <figcaption className="mt-3 text-(length:--text-nota) text-marfil/60">
+            Maya Hohn. Fotografía de Sylvia Shaw Arrivillaga, Colección Casa Laruduna.{" "}
+            <Link href="/archivo-visual" className="enlace">
+              Ver sus fotografías
+            </Link>
+          </figcaption>
+        </figure>
       </>
     ),
   },
